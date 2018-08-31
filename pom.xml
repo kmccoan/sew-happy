@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+<!--     <parent>
+        <groupId>com.allocadia</groupId>
+        <artifactId>allocadia</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent> -->
+
+    <groupId>com.husume</groupId>
+    <artifactId>sew-happy</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Sew Happy</name>
+
+    <properties>
+        <node.version>v8.11.2</node.version>
+        <yarn.version>v1.7.0</yarn.version>
+    </properties>
+
+    <modules>
+        <module>client</module>
+    </modules>
+</project>
