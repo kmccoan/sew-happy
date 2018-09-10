@@ -1,0 +1,10 @@
+@import "../../commons/tokens/design_tokens";
+
+.post-summary {
+  padding: $spacing-xs;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}

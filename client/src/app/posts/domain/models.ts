@@ -22,4 +22,5 @@ export type Post = {
   author: string,
   archived: boolean,
   parts: ReadonlyArray<PostPart>
+  summary_image_url: string;
 }
