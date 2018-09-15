@@ -273,6 +273,30 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@ngrx/effects@^6.1.0":
+  version "6.1.0"
+  resolved "https://npm.allocadia.technology/@ngrx%2feffects/-/effects-6.1.0.tgz#3c1e1ab1e5a86c6d9c29d4f3771e42cc9bd8576c"
+
+"@ngrx/entity@^6.1.0":
+  version "6.1.0"
+  resolved "https://npm.allocadia.technology/@ngrx%2fentity/-/entity-6.1.0.tgz#9ea34beef25e458b45638095875b2548d484df9f"
+
+"@ngrx/router-store@^6.1.0":
+  version "6.1.0"
+  resolved "https://npm.allocadia.technology/@ngrx%2frouter-store/-/router-store-6.1.0.tgz#a225de3fbb262429561d722e139dde7efdcf0cea"
+
+"@ngrx/schematics@^6.1.0":
+  version "6.1.0"
+  resolved "https://npm.allocadia.technology/@ngrx%2fschematics/-/schematics-6.1.0.tgz#4e784da5502829700895ca87d4cc5da93bf3ec84"
+
+"@ngrx/store-devtools@^6.1.0":
+  version "6.1.0"
+  resolved "https://npm.allocadia.technology/@ngrx%2fstore-devtools/-/store-devtools-6.1.0.tgz#cf65a3149628dc37badd094204484dde9ba14200"
+
+"@ngrx/store@^6.1.0":
+  version "6.1.0"
+  resolved "https://npm.allocadia.technology/@ngrx%2fstore/-/store-6.1.0.tgz#5b027647a797bf027912568214b10375dd75af38"
+
 "@ngtools/webpack@6.1.5":
   version "6.1.5"
   resolved "https://npm.allocadia.technology/@ngtools%2fwebpack/-/webpack-6.1.5.tgz#134639686eb4519885ed27665babdf80ce098263"
