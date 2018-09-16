@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PostSummaryComponent } from './post-summary.component';
+import { PostSummaryComponent } from "./post-summary.component";
 
-describe('PostSummaryComponent', () => {
+describe("PostSummaryComponent", () => {
   let component: PostSummaryComponent;
   let fixture: ComponentFixture<PostSummaryComponent>;
 
@@ -10,7 +10,7 @@ describe('PostSummaryComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ PostSummaryComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('PostSummaryComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

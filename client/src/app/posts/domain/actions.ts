@@ -11,5 +11,6 @@ export class PostsFetched implements Action {
   public static readonly TYPE = "[POSTS] POST FETCHED";
   public readonly type = PostsFetched.TYPE;
 
-  public constructor(public posts: ReadonlyArray<Post>) {}
+  public constructor(public posts: ReadonlyArray<Post>) {
+  }
 }

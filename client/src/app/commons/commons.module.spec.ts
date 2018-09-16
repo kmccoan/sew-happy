@@ -1,13 +1,13 @@
-import { CommonsModule } from './commons.module';
+import { CommonsModule } from "./commons.module";
 
-describe('CommonsModule', () => {
+describe("CommonsModule", () => {
   let commonsModule: CommonsModule;
 
   beforeEach(() => {
     commonsModule = new CommonsModule();
   });
 
-  it('should create an instance', () => {
+  it("should create an instance", () => {
     expect(commonsModule).toBeTruthy();
   });
 });

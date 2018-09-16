@@ -3,12 +3,12 @@ import { RouterModule, Routes } from "@angular/router";
 import { PostsPageComponent } from "./routes/posts-page/posts-page.component";
 
 const routes: Routes = [
-  { path: 'posts', component: PostsPageComponent }
+  { path: "posts", component: PostsPageComponent }
 ];
 
 @NgModule({
   exports: [ RouterModule ],
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes) ]
 })
 export class AppRoutingModule {
 }

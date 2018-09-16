@@ -1,10 +1,4 @@
-import {
-  Action,
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector
-} from "@ngrx/store";
+import { Action } from "@ngrx/store";
 import { PostsFetched } from "../domain/actions";
 
 import { Post } from "../domain/models";
@@ -20,7 +14,7 @@ export function postReducer(state: PostState | undefined, action: Action): PostS
     return {
       ...state,
       posts: action.posts
-    }
+    };
   }
   return state;
 }
