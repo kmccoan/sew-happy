@@ -3395,6 +3395,12 @@ jasmine-diff@^0.1.3:
   dependencies:
     diff "^3.2.0"
 
+jasmine-marbles@0.4.0:
+  version "0.4.0"
+  resolved "https://npm.allocadia.technology/jasmine-marbles/-/jasmine-marbles-0.4.0.tgz#de72331d189d4968e4b1e78b638e51654040c755"
+  dependencies:
+    lodash "^4.5.0"
+
 jasmine-spec-reporter@~4.2.1:
   version "4.2.1"
   resolved "https://npm.allocadia.technology/jasmine-spec-reporter/-/jasmine-spec-reporter-4.2.1.tgz#1d632aec0341670ad324f92ba84b4b32b35e9e22"
