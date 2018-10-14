@@ -6,6 +6,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../../environments/environment";
 import { PostEffects } from "./post.effects";
 import { postReducer, STORE_NAME } from "./reducers";
+import { PostsHttpService } from "./services/posts.http.service";
 import { PostsService } from "./services/posts.service";
 import { PostListComponent } from "./widgets/post-list/post-list.component";
 import { PostSummaryComponent } from "./widgets/post-summary/post-summary.component";
@@ -20,7 +21,7 @@ import { PostSummaryComponent } from "./widgets/post-summary/post-summary.compon
   exports: [
     PostListComponent
   ],
-  providers: [ PostsService ],
+  providers: [ PostsService, PostsHttpService ],
   declarations: [ PostListComponent, PostSummaryComponent ]
 })
 export class PostsModule {

@@ -3,10 +3,13 @@ package com.husume.appserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.husume.posts.PostsConductorFactory;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerResponse;
-import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.CorsHandler;
+import io.vertx.ext.web.handler.StaticHandler;
 
 @Component
 public class AppServer extends AbstractVerticle {
@@ -22,17 +25,22 @@ public class AppServer extends AbstractVerticle {
     }
 
     private Router router() {
-        Router router = Router.router(vertx);
+        Router mainRouter = Router.router(vertx);
+        mainRouter.route().handler(CorsHandler.create(".*")); //TODO: dev mode only
 
-        router.route("/health-check").handler(routingContext -> {
-
+        mainRouter.route("/health-check").handler(routingContext -> {
             HttpServerResponse response = routingContext.response();
-
             response.putHeader("Content-Type", "application/json");
-            String healthCheck = "{\"status\":\"OK\"}";
-            response.end(Json.encodePrettily(healthCheck));
+            response.end("{\"status\":\"OK\"}");
         });
 
-        return router;
+        mainRouter.route().handler(StaticHandler.create());
+
+        Router apiRouter = Router.router(vertx);
+        mainRouter.mountSubRouter("/api", apiRouter);
+
+        apiRouter.get("/posts").handler(PostsConductorFactory.createGetAllHandler());
+
+        return mainRouter;
     }
 }

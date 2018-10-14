@@ -16,8 +16,5 @@ export class PostsPageComponent implements OnInit {
 
   public ngOnInit() {
     this.postsService.loadPosts();
-    this.postsService.getPosts().subscribe(val => {
-      console.log("here", val);
-    });
   }
 }
