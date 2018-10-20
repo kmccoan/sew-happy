@@ -6,3 +6,57 @@ h1 {
   text-align: center;
   color: #2f2f2f;
 }
+
+/*---------------*/
+/***** Bubba *****/
+/*---------------*/
+
+div.effect-bubba {
+  position: relative;
+  margin: auto;
+}
+
+div.effect-bubba div::before,
+div.effect-bubba div::after {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  content: '';
+  opacity: 0;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+}
+
+div.effect-bubba div::before {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: scale(0,1);
+  transform: scale(0,1);
+}
+
+div.effect-bubba div::after {
+  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
+  -webkit-transform: scale(1,0);
+  transform: scale(1,0);
+}
+
+div.effect-bubba h1 {
+  padding: 0.67em;
+  margin: 0px;
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+}
+
+div.effect-bubba:hover div::before,
+div.effect-bubba:hover div::after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+div.effect-bubba:hover h1 {
+  opacity: 1;
+}

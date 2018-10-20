@@ -29,7 +29,6 @@
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26",
     "@angular/cdk": "^6.2.0",
-    "materialize-css": "^1.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",
