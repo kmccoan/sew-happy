@@ -8,7 +8,6 @@ import com.husume.posts.PostsConductorFactory;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 
 @Component
@@ -26,7 +25,7 @@ public class AppServer extends AbstractVerticle {
 
     private Router router() {
         Router mainRouter = Router.router(vertx);
-        mainRouter.route().handler(CorsHandler.create(".*")); //TODO: dev mode only
+//        mainRouter.route().handler(CorsHandler.create(".*")); //TODO: dev mode only
 
         mainRouter.route("/health-check").handler(routingContext -> {
             HttpServerResponse response = routingContext.response();
