@@ -8,6 +8,7 @@
 
 # dependencies
 /node_modules
+.vertx
 
 # IDEs and editors
 /.idea
