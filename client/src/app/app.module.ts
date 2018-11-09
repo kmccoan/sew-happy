@@ -15,7 +15,6 @@ import { AppEffects } from "./app.effects";
 import { CommonsModule } from "./commons/commons.module";
 import { PostsModule } from "./posts/posts.module";
 import { metaReducers, reducers } from "./reducers";
-import { RoutesModule } from "./routes/routes.module";
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { RoutesModule } from "./routes/routes.module";
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([ AppEffects ]),
-    RoutesModule,
     HttpClientModule
   ],
   providers: [],

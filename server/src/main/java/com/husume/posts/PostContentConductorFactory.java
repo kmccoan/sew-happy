@@ -6,11 +6,8 @@ import io.vertx.core.Handler;
 import io.vertx.ext.web.RoutingContext;
 
 @Component
-public class PostsConductorFactory {
-    public static Handler<RoutingContext> createGetAllHandler() {
-        return new PostsGetAllConductor();
-    }
+public class PostContentConductorFactory {
     public static Handler<RoutingContext> createGetHandler() {
-        return new PostsGetConductor();
+        return new PostContentGetConductor();
     }
 }

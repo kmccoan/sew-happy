@@ -3,6 +3,7 @@ package com.husume.appserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.husume.posts.PostContentConductorFactory;
 import com.husume.posts.PostsConductorFactory;
 
 import io.vertx.core.AbstractVerticle;
@@ -25,7 +26,6 @@ public class AppServer extends AbstractVerticle {
 
     private Router router() {
         Router mainRouter = Router.router(vertx);
-//        mainRouter.route().handler(CorsHandler.create(".*")); //TODO: dev mode only
 
         mainRouter.route("/health-check").handler(routingContext -> {
             HttpServerResponse response = routingContext.response();
@@ -38,7 +38,12 @@ public class AppServer extends AbstractVerticle {
         Router apiRouter = Router.router(vertx);
         mainRouter.mountSubRouter("/api", apiRouter);
 
-        apiRouter.get("/posts").handler(PostsConductorFactory.createGetAllHandler());
+        Router postRouter = Router.router(vertx);
+        apiRouter.mountSubRouter("/posts", postRouter);
+
+        postRouter.get("/:id/content").handler(PostContentConductorFactory.createGetHandler());
+        postRouter.get("/:id").handler(PostsConductorFactory.createGetHandler());
+        postRouter.get().handler(PostsConductorFactory.createGetAllHandler());
 
         return mainRouter;
     }

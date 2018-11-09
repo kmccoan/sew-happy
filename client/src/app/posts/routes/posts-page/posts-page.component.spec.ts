@@ -2,9 +2,9 @@ import { Injector } from "@angular/core";
 import { cold } from "jasmine-marbles";
 
 import { Observable } from "rxjs";
-import { Post } from "../../posts/domain/models";
+import { Post } from "../../domain/models";
 
-import { PostsService } from "../../posts/services/posts.service";
+import { PostsService } from "../../services/posts.service";
 import { PostsPageComponent } from "./posts-page.component";
 
 type Config = {
@@ -14,7 +14,6 @@ describe("PostsPageComponent", () => {
   function setup(config: Config) {
     const postsServiceMock = {
       getPosts: () => config.posts$ || cold("x", { x: undefined }),
-      loadPosts: jasmine.createSpy("loadPosts")
     };
 
     const injector = Injector.create([
@@ -38,22 +37,12 @@ describe("PostsPageComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  describe("ngOnInit", () => {
-    it("should load posts", () => {
-      const { component, postsService } = setup({});
-
-      component.ngOnInit();
-
-      expect(postsService.loadPosts).toHaveBeenCalledTimes(1);
-    });
-  });
-
   describe("posts$", () => {
     it("should be posts from PostService", () => {
       const postsFromPostService$ = cold("x", {
         x: [
-          {id: "1", title: "foo", archived: false, author: "auth", summary_image_url: "https://google.ca", tags: [], parts: []},
-          {id: "2", title: "boo", archived: true, author: "auth", summary_image_url: "https://google.ca", tags: [], parts: []}
+          {id: "1", title: "foo", archived: false, author: "auth", summary_image_url: "https://google.ca", tags: []},
+          {id: "2", title: "boo", archived: true, author: "auth", summary_image_url: "https://google.ca", tags: []}
         ]
       });
       const { component } = setup({ posts$: postsFromPostService$ });

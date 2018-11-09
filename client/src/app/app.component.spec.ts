@@ -12,7 +12,7 @@ import { AppEffects } from "./app.effects";
 import { CommonsModule } from "./commons/commons.module";
 import { PostsModule } from "./posts/posts.module";
 import { metaReducers, reducers } from "./reducers";
-import { RoutesModule } from "./routes/routes.module";
+import { PostRoutingModule } from "./posts/routes/routes.module";
 
 describe("AppComponent", () => {
   beforeEach(async(() => {
@@ -25,7 +25,7 @@ describe("AppComponent", () => {
         PostsModule,
         StoreModule.forRoot(reducers, { metaReducers }),
         EffectsModule.forRoot([ AppEffects ]),
-        RoutesModule
+        PostRoutingModule
       ],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }],
       declarations: [

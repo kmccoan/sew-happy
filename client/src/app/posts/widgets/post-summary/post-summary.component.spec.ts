@@ -58,7 +58,7 @@ describe("PostSummaryComponent", () => {
 
   describe("summary details", () => {
     it("should display post title", () => {
-      const post = {id: "2", title: "boo", archived: true, author: "auth", summary_image_url: "https://google.ca", tags: [], parts: []};
+      const post = {id: "2", title: "boo", archived: true, author: "auth", summary_image_url: "https://google.ca", tags: []};
       setup({ post: post });
 
       expect(getTitle()).toBe("boo");

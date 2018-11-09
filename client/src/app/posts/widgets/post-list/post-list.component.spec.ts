@@ -63,8 +63,8 @@ describe("PostListComponent", () => {
 
   describe("post summaries", () => {
     it("should display summaries for all non-archived posts", () => {
-      const post1 = {id: "1", title: "foo", archived: false, author: "auth", summary_image_url: "https://google.ca", tags: [], parts: []};
-      const post2 = {id: "2", title: "boo", archived: true, author: "auth", summary_image_url: "https://google.ca", tags: [], parts: []};
+      const post1 = {id: "1", title: "foo", archived: false, author: "auth", summary_image_url: "https://google.ca", tags: []};
+      const post2 = {id: "2", title: "boo", archived: true, author: "auth", summary_image_url: "https://google.ca", tags: []};
       setup({
         posts: [ post1, post2 ]
       });
