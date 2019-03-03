@@ -3,8 +3,8 @@ package com.husume.appserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.husume.posts.PostContentConductorFactory;
-import com.husume.posts.PostsConductorFactory;
+import com.husume.posts.conductors.PostContentConductorFactory;
+import com.husume.posts.conductors.PostsConductorFactory;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerResponse;

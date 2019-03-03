@@ -1,4 +1,4 @@
-package com.husume.posts;
+package com.husume.posts.conductors;
 
 import org.springframework.stereotype.Component;
 
