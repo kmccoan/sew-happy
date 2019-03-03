@@ -1,20 +1,20 @@
-import { APP_BASE_HREF } from "@angular/common";
-import { async, TestBed } from "@angular/core/testing";
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { APP_BASE_HREF } from '@angular/common';
+import { async, TestBed } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { EffectsModule } from "@ngrx/effects";
-import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { AppEffects } from "./app.effects";
-import { CommonsModule } from "./commons/commons.module";
-import { PostsModule } from "./posts/posts.module";
-import { metaReducers, reducers } from "./reducers";
-import { PostRoutingModule } from "./posts/routes/routes.module";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AppEffects } from './app.effects';
+import { CommonsModule } from './commons/commons.module';
+import { PostsModule } from './posts/posts.module';
+import { metaReducers, reducers } from './reducers';
+import { PostRoutingModule } from './posts/routes/routes.module';
 
-describe("AppComponent", () => {
+describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -33,7 +33,7 @@ describe("AppComponent", () => {
       ]
     }).compileComponents();
   }));
-  it("should create the app", async(() => {
+  it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
@@ -41,6 +41,6 @@ describe("AppComponent", () => {
   it(`should have as title 'sew-happy'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual("sew-happy");
+    expect(app.title).toEqual('sew-happy');
   }));
 });

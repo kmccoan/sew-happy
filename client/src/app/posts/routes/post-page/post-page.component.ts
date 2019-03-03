@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Observable } from "rxjs";
-import { switchMap } from "rxjs/operators";
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
-import { Post } from "../../domain/models";
-import { PostsService } from "../../services/posts.service";
+import { Post } from '../../domain/models';
+import { PostsService } from '../../services/posts.service';
 
 @Component({
   selector: 'app-post-page',

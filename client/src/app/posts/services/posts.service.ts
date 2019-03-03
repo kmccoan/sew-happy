@@ -1,17 +1,17 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { ClearPosts, FetchPost, FetchPosts } from "../domain/actions";
-import { Post } from "../domain/models";
-import { PostState, STORE_NAME } from "../reducers";
+import { ClearPosts, FetchPost, FetchPosts } from '../domain/actions';
+import { Post } from '../domain/models';
+import { PostState, STORE_NAME } from '../reducers';
 
 @Injectable()
 export class PostsService {
 
   private _posts$: Observable<ReadonlyArray<Post> | undefined> = new Observable(sub => {
-    return this.store.select(STORE_NAME, "posts")
+    return this.store.select(STORE_NAME, 'posts')
         .subscribe(sub)
         .add(() => this.store.dispatch(new ClearPosts()));
   });

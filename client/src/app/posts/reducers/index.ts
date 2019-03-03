@@ -1,11 +1,11 @@
-import { Action } from "@ngrx/store";
+import { Action } from '@ngrx/store';
 
-import { array_push, array_replace, object_assign } from "imuter";
+import { array_push, array_replace, object_assign } from 'imuter';
 
-import { ClearPosts, PostContentFetched, PostFetched, PostsFetched } from "../domain/actions";
-import { Post } from "../domain/models";
+import { ClearPosts, PostContentFetched, PostFetched, PostsFetched } from '../domain/actions';
+import { Post } from '../domain/models';
 
-export const STORE_NAME = "postState";
+export const STORE_NAME = 'postState';
 
 export interface PostState {
   posts?: ReadonlyArray<Post>;

@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Actions, Effect, ofType } from "@ngrx/effects";
-import { combineLatest, of } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { combineLatest, of } from 'rxjs';
 
-import { map, mergeMap, switchMap } from "rxjs/operators";
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 
-import { FetchPost, FetchPosts, PostContentFetched, PostFetched, PostsFetched } from "./domain/actions";
-import { PostsHttpService } from "./services/posts.http.service";
+import { FetchPost, FetchPosts, PostContentFetched, PostFetched, PostsFetched } from './domain/actions';
+import { PostsHttpService } from './services/posts.http.service';
 
 
 @Injectable()

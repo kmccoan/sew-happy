@@ -1,13 +1,13 @@
-import { PostsModule } from "./posts.module";
+import { PostsModule } from './posts.module';
 
-describe("PostsModule", () => {
+describe('PostsModule', () => {
   let postsModule: PostsModule;
 
   beforeEach(() => {
     postsModule = new PostsModule();
   });
 
-  it("should create an instance", () => {
+  it('should create an instance', () => {
     expect(postsModule).toBeTruthy();
   });
 });

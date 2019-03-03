@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
-import { Post } from "../../domain/models";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Post } from '../../domain/models';
 
 @Component({
   selector: 'app-post-details',
