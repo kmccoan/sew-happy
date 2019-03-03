@@ -11,7 +11,7 @@ export interface PostState {
   posts?: ReadonlyArray<Post>;
 }
 
-function updatedPosts(state: PostState | undefined, postId, postUpdates): PostState {
+function updatedPosts(state: PostState | undefined, postId, postUpdates: Post): PostState {
   const currentPosts = ((state || {}).posts || []);
   const currentPostIndex = currentPosts.findIndex(post => post.id === postId);
   if (currentPostIndex !== -1) {
@@ -37,7 +37,7 @@ export function postReducer(state: PostState | undefined, action: Action): PostS
   }
 
   if (action instanceof PostContentFetched) {
-    return updatedPosts(state, action.postContent.postId, { content: action.postContent });
+    return updatedPosts(state, action.postContent.postId, { id: action.postContent.postId, content: action.postContent });
   }
 
   if (action instanceof PostFetched) {

@@ -7,10 +7,11 @@ import { Post } from '../../domain/models';
 import { PostsService } from '../../services/posts.service';
 import { PostsPageComponent } from './posts-page.component';
 
-type Config = {
-  posts$?: Observable<ReadonlyArray<Post>>
+interface Config {
+  posts$?: Observable<ReadonlyArray<Post>>;
 }
-describe('PostsPageComponent', () => {
+
+describe('PostsPageComponent DOM', () => {
   function setup(config: Config) {
     const postsServiceMock = {
       getPosts: () => config.posts$ || cold('x', { x: undefined }),

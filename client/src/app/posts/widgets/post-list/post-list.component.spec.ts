@@ -1,6 +1,8 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { Post } from '../../domain/models';
 import { PostSummaryComponent } from '../post-summary/post-summary.component';
 
@@ -23,11 +25,11 @@ class TestComponent {
   public posts: ReadonlyArray<Post>;
 }
 
-type Config = {
+interface Config {
   posts: ReadonlyArray<Post>;
 }
 
-describe('PostListComponent', () => {
+describe('PostListComponent DOM', () => {
   let component: PostListComponent;
   let fixture: ComponentFixture<TestComponent>;
 
@@ -43,6 +45,12 @@ describe('PostListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterModule.forRoot([]),
+      ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue : '/' },
+      ],
       declarations: [
         PostSummaryComponent,
         PostListComponent,

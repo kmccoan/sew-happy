@@ -4,8 +4,8 @@ import { combineLatest, of } from 'rxjs';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 
-import { FetchPost, FetchPosts, PostContentFetched, PostFetched, PostsFetched } from './domain/actions';
-import { PostsHttpService } from './services/posts.http.service';
+import { FetchDetailedPost, FetchPosts, PostContentFetched, PostFetched, PostsFetched } from '../domain/actions';
+import { PostsHttpService } from '../services/posts.http.service';
 
 
 @Injectable()
@@ -20,12 +20,12 @@ export class PostEffects {
   );
 
   @Effect()
-  public readonly fetchPost$ = this.actions$.pipe(
-    ofType(FetchPost.TYPE),
+  public readonly fetchDetailedPost$ = this.actions$.pipe(
+    ofType(FetchDetailedPost.TYPE),
     switchMap(action =>
       combineLatest(
-        this.postsHttpService.getPost((action as FetchPost).id),
-        this.postsHttpService.getPostContent((action as FetchPost).id)
+        this.postsHttpService.getPost((action as FetchDetailedPost).id),
+        this.postsHttpService.getPostContent((action as FetchDetailedPost).id)
       ).pipe(
         mergeMap(([ post, postContent ]) => of(new PostFetched(post), new PostContentFetched(postContent)))
       )

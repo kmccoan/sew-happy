@@ -10,9 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppEffects } from './app.effects';
 import { CommonsModule } from './commons/commons.module';
+import { PostRoutingModule } from './posts/post-routing.module';
 import { PostsModule } from './posts/posts.module';
+import { PostsHttpService } from './posts/services/posts.http.service';
 import { metaReducers, reducers } from './reducers';
-import { PostRoutingModule } from './posts/routes/routes.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -27,7 +28,10 @@ describe('AppComponent', () => {
         EffectsModule.forRoot([ AppEffects ]),
         PostRoutingModule
       ],
-      providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+      providers: [
+        {provide: APP_BASE_HREF, useValue : '/' },
+        {provide: PostsHttpService, useValue: {}}
+        ],
       declarations: [
         AppComponent
       ]

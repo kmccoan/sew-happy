@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ClearPosts, FetchPost, FetchPosts } from '../domain/actions';
+import { ClearPosts, FetchDetailedPost, FetchPosts } from '../domain/actions';
 import { Post } from '../domain/models';
-import { PostState, STORE_NAME } from '../reducers';
+import { PostState, STORE_NAME } from '../reducers/post.reducer';
 
 @Injectable()
 export class PostsService {
@@ -24,7 +24,7 @@ export class PostsService {
   }
 
   public getPostWithContent(id: string) {
-    this.store.dispatch(new FetchPost(id));
+    this.store.dispatch(new FetchDetailedPost(id));
     return this._posts$.pipe(
       map(posts => {
         if (posts != null) {

@@ -12,9 +12,9 @@ export class ClearPosts implements Action {
   public readonly type = ClearPosts.TYPE;
 }
 
-export class FetchPost implements Action {
-  public static readonly TYPE = '[POSTS] FETCH POST';
-  public readonly type = FetchPost.TYPE;
+export class FetchDetailedPost implements Action {
+  public static readonly TYPE = '[POSTS] FETCH DETAILED POST';
+  public readonly type = FetchDetailedPost.TYPE;
 
   public constructor(public id: string) {
   }
