@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Post } from '../../domain/models';
 
 @Component({
@@ -7,14 +7,10 @@ import { Post } from '../../domain/models';
   styleUrls: ['./post-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostDetailsComponent implements OnInit {
+export class PostDetailsComponent {
 
   @Input()
   public post: Post;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

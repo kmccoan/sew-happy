@@ -16,7 +16,7 @@ public class PostContentGetConductor implements Handler<RoutingContext> {
         String id = routingContext.request().getParam("id");
         response.end("{" +
             "\"postId\":\"" + id + "\"," +
-            "\"content\":{\"parts\":[{\"content\":\"My post content " + id + "\"},{\"content\":\"More content\"}]}" +
+            "\"parts\":[{\"content\":\"My post content " + id + "\"},{\"content\":\"More content\"}]" +
             "}");
     }
 }
