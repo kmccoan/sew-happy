@@ -89,7 +89,7 @@ describe('PostEffects', () => {
 
     it('should call dispatch PostFetched & PostContentFetched events when successful', () => {
       const post = { id: '1' };
-      const postContent = { postId: '1', parts: [] };
+      const postContent = { post_id: '1', parts: [] };
       const { effects } = setup({
         mockActions: hot('x', { x: new FetchDetailedPost('1') }),
         post$: cold('x', { x: post }),

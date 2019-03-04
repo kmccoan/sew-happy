@@ -37,7 +37,7 @@ export function postReducer(state: PostState | undefined, action: Action): PostS
   }
 
   if (action instanceof PostContentFetched) {
-    return updatedPosts(state, action.postContent.postId, { id: action.postContent.postId, content: action.postContent });
+    return updatedPosts(state, action.postContent.post_id, { id: action.postContent.post_id, content: action.postContent });
   }
 
   if (action instanceof PostFetched) {

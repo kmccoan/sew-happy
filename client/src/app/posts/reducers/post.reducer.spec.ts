@@ -45,7 +45,7 @@ describe('PostReducer', () => {
 
   describe('PostContentFetched', () => {
     it('should set post content on an undefined state', () => {
-      const fetchedPostContent = { postId: '2', parts: [ { content: 'blah' } ] };
+      const fetchedPostContent = { post_id: '2', parts: [ { content: 'blah' } ] };
 
       const newState = postReducer(undefined, new PostContentFetched(fetchedPostContent));
 
@@ -58,7 +58,7 @@ describe('PostReducer', () => {
     });
 
     it('should set post content on an empty state', () => {
-      const fetchedPostContent = { postId: '2', parts: [ { content: 'blah' } ] };
+      const fetchedPostContent = { post_id: '2', parts: [ { content: 'blah' } ] };
 
       const newState = postReducer({}, new PostContentFetched(fetchedPostContent));
 
@@ -71,7 +71,7 @@ describe('PostReducer', () => {
     });
 
     it('should set post content on a state with no posts', () => {
-      const fetchedPostContent = { postId: '2', parts: [ { content: 'blah' } ] };
+      const fetchedPostContent = { post_id: '2', parts: [ { content: 'blah' } ] };
 
       const newState = postReducer({ posts: [] }, new PostContentFetched(fetchedPostContent));
 
@@ -84,11 +84,11 @@ describe('PostReducer', () => {
     });
 
     it('should set post content on a state with preexisting posts, not containing post with content', () => {
-      const fetchedPostContent = { postId: '2', parts: [ { content: 'foo' } ] };
+      const fetchedPostContent = { post_id: '2', parts: [ { content: 'foo' } ] };
       const preExistingPost = {
         id: '1',
         content: {
-          postId: '1',
+          post_id: '1',
           parts: [ { content: 'blah' } ]
         }
       };
@@ -104,11 +104,11 @@ describe('PostReducer', () => {
     });
 
     it('should set post content on a state with preexisting posts  containing post with content', () => {
-      const fetchedPostContent = { postId: '2', parts: [ { content: 'blah' } ] };
+      const fetchedPostContent = { post_id: '2', parts: [ { content: 'blah' } ] };
       const preExistingPost = {
         id: '2',
         content: {
-          postId: '2',
+          post_id: '2',
           parts: [ { content: 'foo' } ]
         }
       };

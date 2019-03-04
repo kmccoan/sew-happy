@@ -28,6 +28,6 @@ export type Post = {
 };
 
 export type PostContent = {
-  postId: string,
+  post_id: string,
   parts: ReadonlyArray<PostPart>
 };

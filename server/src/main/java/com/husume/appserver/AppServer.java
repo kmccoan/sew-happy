@@ -3,8 +3,8 @@ package com.husume.appserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.husume.posts.conductors.PostContentConductorFactory;
-import com.husume.posts.conductors.PostsConductorFactory;
+import com.husume.posts.primary.adapters.PostContentConductorFactory;
+import com.husume.posts.primary.adapters.PostsConductorFactory;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerResponse;
@@ -16,6 +16,12 @@ public class AppServer extends AbstractVerticle {
 
     @Autowired
     private AppServerConfiguration appServerConfiguration;
+
+    @Autowired
+    private PostContentConductorFactory contentConductorFactory;
+
+    @Autowired
+    private PostsConductorFactory postsConductorFactory;
 
     @Override
     public void start() throws Exception {
@@ -41,9 +47,9 @@ public class AppServer extends AbstractVerticle {
         Router postRouter = Router.router(vertx);
         apiRouter.mountSubRouter("/posts", postRouter);
 
-        postRouter.get("/:id/content").handler(PostContentConductorFactory.createGetHandler());
-        postRouter.get("/:id").handler(PostsConductorFactory.createGetHandler());
-        postRouter.get().handler(PostsConductorFactory.createGetAllHandler());
+        postRouter.get("/:id/content").handler(contentConductorFactory.createGetHandler());
+        postRouter.get("/:id").handler(postsConductorFactory.createGetHandler());
+        postRouter.get().handler(postsConductorFactory.createGetAllHandler());
 
         return mainRouter;
     }
