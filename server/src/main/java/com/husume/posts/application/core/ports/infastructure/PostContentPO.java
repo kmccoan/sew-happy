@@ -3,15 +3,15 @@ package com.husume.posts.application.core.ports.infastructure;
 import java.util.List;
 
 public class PostContentPO {
-    private String postId;
+    private Integer postId;
     private List<PostPartPO> parts;
 
-    public PostContentPO(String postId, List<PostPartPO> parts) {
+    public PostContentPO(Integer postId, List<PostPartPO> parts) {
         this.postId = postId;
         this.parts = parts;
     }
 
-    public String getPostId() {
+    public Integer getPostId() {
         return postId;
     }
 

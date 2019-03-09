@@ -26,7 +26,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDTO get(String id) {
         PostID postId = PostID.valueOf(id);
-        return dtoConverter.convert(poConverter.convert(postRepository.get(postId.asString())));
+        return dtoConverter.convert(poConverter.convert(postRepository.get(postId.asInt())));
     }
 
     @Override
@@ -37,6 +37,6 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostContentDTO getContent(String id) {
         PostID postId = PostID.valueOf(id);
-        return dtoConverter.convert(postId, poConverter.convert(contentRepository.get(postId.asString())));
+        return dtoConverter.convert(postId, poConverter.convert(contentRepository.get(postId.asInt())));
     }
 }
