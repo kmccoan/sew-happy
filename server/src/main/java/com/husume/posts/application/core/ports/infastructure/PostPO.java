@@ -1,7 +1,9 @@
 package com.husume.posts.application.core.ports.infastructure;
 
+import com.husume.posts.application.core.domain.models.PostID;
+
 public class PostPO {
-    private Integer id;
+    private PostID id;
     private String title;
     private String author;
     private Boolean archived;
@@ -10,7 +12,7 @@ public class PostPO {
     public PostPO() {
     }
 
-    public PostPO(Integer id, String author, String title, Boolean archived, String summaryImageUrl) {
+    public PostPO(PostID id, String author, String title, Boolean archived, String summaryImageUrl) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -18,11 +20,11 @@ public class PostPO {
         this.summaryImageUrl = summaryImageUrl;
     }
 
-    public Integer getId() {
+    public PostID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(PostID id) {
         this.id = id;
     }
 

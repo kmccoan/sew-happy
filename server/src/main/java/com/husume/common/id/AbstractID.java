@@ -1,30 +1,28 @@
 package com.husume.common.id;
 
 import java.io.Serializable;
+import java.util.UUID;
 import java.util.function.Function;
 
 public abstract class AbstractID implements Serializable, Comparable<AbstractID> {
 
-    protected static <T extends AbstractID> T valueOf(Function<Integer, T> constructor, String value) {
+    protected static <T extends AbstractID> T valueOf(Function<UUID, T> constructor, String value) {
         if (null == value) {
             return null;
         }
 
-        final Integer intValue;
+        final UUID uuidValue;
         try {
-            intValue = Integer.valueOf(value);
+            uuidValue = UUID.fromString(value);
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }
-        return constructor.apply(intValue);
-    }
-    protected static <T extends AbstractID> T valueOf(Function<Integer, T> constructor, Integer value) {
-        return null == value ? null : constructor.apply(value);
+        return constructor.apply(uuidValue);
     }
 
-    private final Integer value;
+    private final UUID value;
 
-    protected AbstractID(Integer value) {
+    protected AbstractID(UUID value) {
         if (null == value) {
             throw new NullPointerException();
         }
@@ -32,11 +30,12 @@ public abstract class AbstractID implements Serializable, Comparable<AbstractID>
         this.value = value;
     }
 
-    public final Integer asInt() {
-        return value;
-    }
     public final String asString() {
         return value.toString();
+    }
+
+    public final UUID asUUID() {
+        return value;
     }
 
     @Override
@@ -54,7 +53,7 @@ public abstract class AbstractID implements Serializable, Comparable<AbstractID>
 
     @Override
     public final int compareTo(AbstractID that) {
-        return this.asInt().compareTo(that.asInt());
+        return this.value.compareTo(that.value);
     }
 
     @Override

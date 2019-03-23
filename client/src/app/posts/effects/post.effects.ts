@@ -4,7 +4,7 @@ import { combineLatest, of } from 'rxjs';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 
-import { FetchDetailedPost, FetchPosts, PostContentFetched, PostFetched, PostsFetched } from '../domain/actions';
+import { CreatePost, FetchDetailedPost, FetchPosts, PostContentFetched, PostFetched, PostsFetched } from "../domain/actions";
 import { PostsHttpService } from '../services/posts.http.service';
 
 
@@ -30,5 +30,11 @@ export class PostEffects {
         mergeMap(([ post, postContent ]) => of(new PostFetched(post), new PostContentFetched(postContent)))
       )
     )
+  );
+
+  @Effect({dispatch: false}) // TODO: implement more here.
+  public readonly createPost$ = this.actions$.pipe(
+    ofType(CreatePost.TYPE),
+    switchMap((action: CreatePost) => this.postsHttpService.createPost(action.newPost))
   );
 }

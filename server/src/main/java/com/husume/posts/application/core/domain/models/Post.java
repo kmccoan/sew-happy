@@ -1,5 +1,7 @@
 package com.husume.posts.application.core.domain.models;
 
+import java.util.UUID;
+
 public class Post {
     private PostID id;
     //TODO: refactor into "PostMetadata"
@@ -11,9 +13,11 @@ public class Post {
     private PostContent content;
 
     public Post(String title, String author, String summaryImageUrl) {
+        this.id = PostID.valueOf(UUID.randomUUID().toString());
         this.title = title;
         this.author = author;
         this.summaryImageUrl = summaryImageUrl;
+        this.archived = false;
     }
 
     public Post(PostID id, String title, String author, Boolean archived, String summaryImageUrl) {

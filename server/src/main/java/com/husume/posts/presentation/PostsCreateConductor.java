@@ -3,17 +3,18 @@ package com.husume.posts.presentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.husume.posts.application.core.domain.models.PostID;
-import com.husume.posts.application.core.ports.presentation.PostContentDTO;
+import com.husume.posts.application.core.ports.presentation.PostDTO;
 import com.husume.posts.application.core.ports.presentation.PostService;
+
+import java.io.IOException;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
 
 @Component
-public class PostContentGetConductor implements Handler<RoutingContext> {
+public class PostsCreateConductor implements Handler<RoutingContext> {
 
     @Autowired
     private PostService postService;
@@ -25,15 +26,14 @@ public class PostContentGetConductor implements Handler<RoutingContext> {
     public void handle(RoutingContext routingContext) {
         HttpServerResponse response = routingContext.response();
         response.putHeader("Content-Type", "application/json");
-        PostID id = PostID.valueOf(routingContext.request().getParam("id"));
+
         try {
-            PostContentDTO content = postService.getContent(id);
-            if (content == null) {
-                response.end("{}"); //TODO: not found.
-            } else {
-                response.end(mapper.writeValueAsString(content));
-            }
-        } catch (JsonProcessingException e) {
+            PostDTO postToCreate = mapper.readValue(routingContext.getBodyAsString(), PostDTO.class);
+            PostID postID = postService.create(postToCreate.getAuthor(), postToCreate.getTitle(), postToCreate.getSummaryImageUrl());
+            response.setStatusCode(201);
+            response.putHeader("location", routingContext.mountPoint() + "/" + postID.asString());
+            response.end();
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

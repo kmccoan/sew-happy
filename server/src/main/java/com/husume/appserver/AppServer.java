@@ -9,6 +9,7 @@ import com.husume.posts.presentation.PostsConductorFactory;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 
 @Component
@@ -47,9 +48,15 @@ public class AppServer extends AbstractVerticle {
         Router postRouter = Router.router(vertx);
         apiRouter.mountSubRouter("/posts", postRouter);
 
-        postRouter.get("/:id/content").handler(contentConductorFactory.createGetHandler());
-        postRouter.get("/:id").handler(postsConductorFactory.createGetHandler());
-        postRouter.get().handler(postsConductorFactory.createGetAllHandler());
+        postRouter.get("/:id/content")
+            .handler(contentConductorFactory.createGetHandler());
+        postRouter.get("/:id")
+            .handler(postsConductorFactory.createGetHandler());
+        postRouter.get()
+            .handler(postsConductorFactory.createGetAllHandler());
+        postRouter.post()
+            .handler(BodyHandler.create())
+            .handler(postsConductorFactory.createPostHandler());
 
         return mainRouter;
     }

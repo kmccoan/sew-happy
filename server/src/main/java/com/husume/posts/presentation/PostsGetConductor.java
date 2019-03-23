@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.husume.posts.application.core.domain.models.PostID;
 import com.husume.posts.application.core.ports.presentation.PostDTO;
 import com.husume.posts.application.core.ports.presentation.PostService;
 
@@ -24,7 +25,7 @@ public class PostsGetConductor implements Handler<RoutingContext> {
     public void handle(RoutingContext routingContext) {
         HttpServerResponse response = routingContext.response();
         response.putHeader("Content-Type", "application/json");
-        String id = routingContext.request().getParam("id");
+        PostID id = PostID.valueOf(routingContext.request().getParam("id"));
         try {
             PostDTO post = postService.get(id);
             if (post == null) {

@@ -20,4 +20,8 @@ export class PostsHttpService {
   public getPostContent(id: string) {
     return this.http.get<Readonly<PostContent>>(environment.baseUrl + '/posts/' + id + '/content');
   }
+
+  public createPost(newPost: Partial<Readonly<Post>>) {
+    return this.http.post<Readonly<PostContent>>(environment.baseUrl + '/posts', newPost);
+  }
 }

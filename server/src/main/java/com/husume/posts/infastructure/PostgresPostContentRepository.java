@@ -3,6 +3,7 @@ package com.husume.posts.infastructure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.husume.posts.application.core.domain.models.PostID;
 import com.husume.posts.application.core.ports.infastructure.PostContentPO;
 import com.husume.posts.application.core.ports.infastructure.PostContentRepository;
 import com.husume.posts.application.core.ports.infastructure.PostPartPO;
@@ -18,12 +19,12 @@ public class PostgresPostContentRepository implements PostContentRepository {
     private PostgresDataStore postgresDataStore;
 
     @Override
-    public PostContentPO get(Integer id) {
+    public PostContentPO get(PostID id) {
         List<PostPartPO> parts = postgresDataStore.transaction(connection -> {
             return connection.query(
                 "select * from post_content where post_id = ?",
                 this::convertToPostPart,
-                id);
+                id.asUUID());
         });
 
         return new PostContentPO(id, parts);

@@ -19,7 +19,14 @@ public class POConverter {
         if (po == null) {
             return null;
         }
-        return new Post(PostID.valueOf(po.getId()), po.getTitle(), po.getAuthor(), po.getArchived(), po.getSummaryImageUrl());
+        return new Post(po.getId(), po.getTitle(), po.getAuthor(), po.getArchived(), po.getSummaryImageUrl());
+    }
+
+    public PostPO convert(Post post) {
+        if (post == null) {
+            return null;
+        }
+        return new PostPO(post.getId(), post.getAuthor(), post.getTitle(), post.getArchived(), post.getSummaryImageUrl());
     }
 
     public List<Post> convertAll(List<PostPO> pos) {

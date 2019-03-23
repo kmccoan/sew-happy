@@ -14,11 +14,18 @@ public class PostsConductorFactory {
     @Autowired
     private PostsGetAllConductor postsGetAllConductor;
 
+    @Autowired
+    private PostsCreateConductor postsCreateConductor;
+
     public Handler<RoutingContext> createGetAllHandler() {
         return postsGetAllConductor;
     }
 
     public Handler<RoutingContext> createGetHandler() {
         return postsGetConductor;
+    }
+
+    public Handler<RoutingContext> createPostHandler() {
+        return postsCreateConductor;
     }
 }

@@ -3,6 +3,7 @@ package com.husume.posts.application.core.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.husume.posts.application.core.domain.models.Post;
 import com.husume.posts.application.core.domain.models.PostID;
 import com.husume.posts.application.core.ports.presentation.PostContentDTO;
 import com.husume.posts.application.core.ports.presentation.PostDTO;
@@ -24,9 +25,8 @@ public class PostServiceImpl implements PostService {
     private POConverter poConverter;
 
     @Override
-    public PostDTO get(String id) {
-        PostID postId = PostID.valueOf(id);
-        return dtoConverter.convert(poConverter.convert(postRepository.get(postId.asInt())));
+    public PostDTO get(PostID id) {
+        return dtoConverter.convert(poConverter.convert(postRepository.get(id)));
     }
 
     @Override
@@ -35,8 +35,15 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostContentDTO getContent(String id) {
-        PostID postId = PostID.valueOf(id);
-        return dtoConverter.convert(postId, poConverter.convert(contentRepository.get(postId.asInt())));
+    public PostID create(String author, String title, String summaryUrl) {
+        Post newPost = new Post(title, author, summaryUrl);
+
+        postRepository.create(poConverter.convert(newPost));
+        return newPost.getId();
+    }
+
+    @Override
+    public PostContentDTO getContent(PostID id) {
+        return dtoConverter.convert(id, poConverter.convert(contentRepository.get(id)));
     }
 }
