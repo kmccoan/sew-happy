@@ -53,6 +53,7 @@ class PostgresDataSource {
         HikariConfig config = new HikariConfig(props);
         config.setAutoCommit(false);
         config.setMaximumPoolSize(POOL_MAX_CONNECTIONS);
+        config.setIsolateInternalQueries(true);
 
         if (!StringUtils.isEmpty(schemaName)) {
             LOG.info("Setting search path {}", schemaName);
