@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../environments/environment';
+import { AppErrorRoutingModule } from './app-error-routing.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,11 +26,12 @@ import { metaReducers, reducers } from './reducers';
     BrowserModule,
     BrowserAnimationsModule,
     CommonsModule,
-    PostsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([ AppEffects ]),
-    HttpClientModule
+    HttpClientModule,
+    PostsModule,
+    AppErrorRoutingModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

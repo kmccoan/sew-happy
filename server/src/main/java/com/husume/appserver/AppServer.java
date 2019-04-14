@@ -58,6 +58,10 @@ public class AppServer extends AbstractVerticle {
             .handler(BodyHandler.create())
             .handler(postsConductorFactory.createPostHandler());
 
+        mainRouter.route().pathRegex(".*").handler((routingContext) -> {
+            routingContext.reroute("/index.html");
+        });
+
         return mainRouter;
     }
 }
