@@ -5,7 +5,7 @@ import { combineLatest, of } from 'rxjs';
 
 import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
 
-import { CreatePost, FetchDetailedPost, FetchPosts, PostContentFetched, PostCreated, PostFetched, PostsFetched } from '../domain/actions';
+import { CreatePost, EditPost, FetchDetailedPost, FetchPosts, PostContentFetched, PostCreated, PostFetched, PostsFetched, PostUpdated } from "../domain/actions";
 import { PostsHttpService } from '../services/posts.http.service';
 
 
@@ -39,9 +39,21 @@ export class PostEffects {
     switchMap((action: CreatePost) => this.postsHttpService.createPost(action.newPost).pipe(map(() => new PostCreated())))
   );
 
+  @Effect()
+  public readonly editPost$ = this.actions$.pipe(
+    ofType(EditPost.TYPE),
+    switchMap((action: EditPost) => this.postsHttpService.updatePost(action.postUpdates).pipe(map(() => new PostUpdated())))
+  );
+
   @Effect({dispatch: false})
   public readonly postCreatedSnack$ = this.actions$.pipe(
     ofType(PostCreated.TYPE),
     tap(() => this.snackBar.open('Your post was created.'))
+  );
+
+  @Effect({dispatch: false})
+  public readonly postUpdatedSnack$ = this.actions$.pipe(
+    ofType(PostUpdated.TYPE),
+    tap(() => this.snackBar.open('Your post was updated.'))
   );
 }

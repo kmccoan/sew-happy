@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { ClearPosts, CreatePost, FetchDetailedPost, FetchPosts } from "../domain/actions";
-import { Post } from "../domain/models";
-import { PostState, STORE_NAME } from "../reducers/post.reducer";
+import { ClearPosts, CreatePost, EditPost, FetchDetailedPost, FetchPosts } from '../domain/actions';
+import { Post } from '../domain/models';
+import { PostState, STORE_NAME } from '../reducers/post.reducer';
 
 @Injectable()
 export class PostsService {
@@ -36,5 +36,9 @@ export class PostsService {
 
   public createPost(newPost: Partial<Readonly<Post>>) {
     this.store.dispatch(new CreatePost(newPost));
+  }
+
+  public editPost(postUpdates: Partial<Readonly<Post>>) {
+    this.store.dispatch(new EditPost(postUpdates));
   }
 }

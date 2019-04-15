@@ -9,4 +9,5 @@ public interface PostRepository {
     List<PostPO> getAll();
 
     void create(PostPO newPost);
+    void save(PostPO existingPost);
 }

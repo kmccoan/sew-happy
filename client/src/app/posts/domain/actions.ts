@@ -15,6 +15,14 @@ export class CreatePost implements Action {
   }
 }
 
+export class EditPost implements Action {
+  public static readonly TYPE = '[POSTS] EDIT POST';
+  public readonly type = EditPost.TYPE;
+
+  public constructor(public postUpdates: Partial<Readonly<Post>>) {
+  }
+}
+
 export class ClearPosts implements Action {
   public static readonly TYPE = '[POSTS] CLEAR POSTS';
   public readonly type = ClearPosts.TYPE;
@@ -55,4 +63,9 @@ export class PostContentFetched implements Action {
 export class PostCreated implements Action {
   public static readonly TYPE = '[POSTS] POST CREATED';
   public readonly type = PostCreated.TYPE;
+}
+
+export class PostUpdated implements Action {
+  public static readonly TYPE = '[POSTS] POST UPDATED';
+  public readonly type = PostUpdated.TYPE;
 }

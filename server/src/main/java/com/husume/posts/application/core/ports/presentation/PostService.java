@@ -10,4 +10,6 @@ public interface PostService {
     PostID create(String author, String title, String summaryUrl);
 
     PostContentDTO getContent(PostID id);
+
+    void edit(PostID id, String title, String summaryImageUrl);
 }

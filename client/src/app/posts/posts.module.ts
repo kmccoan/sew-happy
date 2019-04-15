@@ -11,12 +11,14 @@ import { PostEffects } from './effects/post.effects';
 import { PostRoutingModule } from './post-routing.module';
 import { postReducer, STORE_NAME } from './reducers/post.reducer';
 import { CreatePostPageComponent } from './routes/create-posts-page/create-post-page.component';
+import { EditPostPageComponent } from "./routes/edit-post-page/edit-post-page.component";
 import { PostPageComponent } from './routes/post-page/post-page.component';
 import { PostsPageComponent } from './routes/posts-page/posts-page.component';
 import { PostsHttpService } from './services/posts.http.service';
 import { PostsService } from './services/posts.service';
 import { PostDetailsComponent } from './widgets/post-details/post-details.component';
 import { PostListComponent } from './widgets/post-list/post-list.component';
+import { PostManagementComponent } from './widgets/post-management/post-management.component';
 import { PostSummaryComponent } from './widgets/post-summary/post-summary.component';
 
 @NgModule({
@@ -39,7 +41,9 @@ import { PostSummaryComponent } from './widgets/post-summary/post-summary.compon
     PostSummaryComponent,
     PostDetailsComponent,
     PostPageComponent,
-    PostsPageComponent
+    PostsPageComponent,
+    PostManagementComponent,
+    EditPostPageComponent
   ]
 })
 export class PostsModule {

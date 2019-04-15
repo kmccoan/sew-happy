@@ -17,8 +17,15 @@ public class PostsConductorFactory {
     @Autowired
     private PostsCreateConductor postsCreateConductor;
 
+    @Autowired
+    private PostsEditConductor postsEditConductor;
+
     public Handler<RoutingContext> createGetAllHandler() {
         return postsGetAllConductor;
+    }
+
+    public Handler<RoutingContext> createPutHandler() {
+        return postsEditConductor;
     }
 
     public Handler<RoutingContext> createGetHandler() {

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.husume.posts.application.core.domain.models.Post;
 import com.husume.posts.application.core.domain.models.PostID;
+import com.husume.posts.application.core.ports.infastructure.PostPO;
 import com.husume.posts.application.core.ports.presentation.PostContentDTO;
 import com.husume.posts.application.core.ports.presentation.PostDTO;
 import com.husume.posts.application.core.ports.presentation.PostService;
@@ -45,5 +46,13 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostContentDTO getContent(PostID id) {
         return dtoConverter.convert(id, poConverter.convert(contentRepository.get(id)));
+    }
+
+    @Override
+    public void edit(PostID id, String title, String summaryImageUrl) {
+        PostPO post = postRepository.get(id);
+        post.updateTitle(title);
+        post.updateSummaryImageUrl(summaryImageUrl);
+        postRepository.save(post);
     }
 }

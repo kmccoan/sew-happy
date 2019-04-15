@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PostsService } from '../../services/posts.service';
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { PostsService } from "../../services/posts.service";
 
 @Component({
   selector: 'app-create-post-page',
@@ -10,26 +10,18 @@ import { PostsService } from '../../services/posts.service';
 })
 export class CreatePostPageComponent {
 
-  public titleControl = new FormControl(null, Validators.required);
-  public authorControl = new FormControl(null, Validators.required);
-  public imageControl = new FormControl(null, Validators.required);
-
-  public postForm = new FormGroup({
-    title: this.titleControl,
-    author: this.authorControl,
-    image: this.imageControl
-  });
+  public postFormControl = new FormControl();
 
   constructor(private postsService: PostsService) {
   }
 
   public createPost() {
     this.postsService.createPost({
-      title: this.titleControl.value,
-      author: this.authorControl.value,
-      summary_image_url: this.imageControl.value
+      title: this.postFormControl.value.title,
+      author: this.postFormControl.value.author,
+      summary_image_url: this.postFormControl.value.image
     });
 
-    this.postForm.reset();
+    this.postFormControl.reset();
   }
 }

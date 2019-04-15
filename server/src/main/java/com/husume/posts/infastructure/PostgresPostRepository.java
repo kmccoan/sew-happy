@@ -46,13 +46,27 @@ public class PostgresPostRepository implements PostRepository {
         });
     }
 
+    @Override
+    public void save(PostPO existingPost) {
+        if (existingPost.getId() == null) {
+            throw new RuntimeException("Cannot save a post that does not exist. Must call create first.");
+        }
+
+        postgresDataStore.transaction(connection -> {
+            connection.update(
+                "update posts set author=?, title=?, summary_image_url=?, archived=? where id=?",
+                existingPost.getAuthor(), existingPost.getTitle(), existingPost.getSummaryImageUrl(), existingPost.getArchived(), existingPost.getId().asUUID()
+            );
+        });
+    }
+
     private PostPO convertToPost(ResultSet row) throws SQLException {
-        PostPO post = new PostPO();
-        post.setId(PostID.valueOf(row.getString("id")));
-        post.setAuthor(row.getString("author"));
-        post.setTitle(row.getString("title"));
-        post.setSummaryImageUrl(row.getString("summary_image_url"));
-        post.setArchived(row.getBoolean("archived"));
-        return post;
+        return new PostPO(
+            PostID.valueOf(row.getString("id")),
+            row.getString("author"),
+            row.getString("title"),
+            row.getBoolean("archived"),
+            row.getString("summary_image_url")
+        );
     }
 }
