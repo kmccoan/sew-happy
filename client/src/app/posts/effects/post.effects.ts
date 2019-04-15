@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { combineLatest, of } from 'rxjs';
 
-import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
 
-import { CreatePost, FetchDetailedPost, FetchPosts, PostContentFetched, PostFetched, PostsFetched } from "../domain/actions";
+import { CreatePost, FetchDetailedPost, FetchPosts, PostContentFetched, PostCreated, PostFetched, PostsFetched } from '../domain/actions';
 import { PostsHttpService } from '../services/posts.http.service';
 
 
 @Injectable()
 export class PostEffects {
 
-  constructor(private actions$: Actions, private postsHttpService: PostsHttpService) {}
+  constructor(private actions$: Actions, private postsHttpService: PostsHttpService, private snackBar: MatSnackBar) {}
 
   @Effect()
   public readonly fetchPosts$ = this.actions$.pipe(
@@ -32,9 +33,15 @@ export class PostEffects {
     )
   );
 
-  @Effect({dispatch: false}) // TODO: implement more here.
+  @Effect()
   public readonly createPost$ = this.actions$.pipe(
     ofType(CreatePost.TYPE),
-    switchMap((action: CreatePost) => this.postsHttpService.createPost(action.newPost))
+    switchMap((action: CreatePost) => this.postsHttpService.createPost(action.newPost).pipe(map(() => new PostCreated())))
+  );
+
+  @Effect({dispatch: false})
+  public readonly postCreatedSnack$ = this.actions$.pipe(
+    ofType(PostCreated.TYPE),
+    tap(() => this.snackBar.open('Your post was created.'))
   );
 }
