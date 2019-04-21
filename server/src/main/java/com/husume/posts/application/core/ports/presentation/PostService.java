@@ -12,4 +12,6 @@ public interface PostService {
     PostContentDTO getContent(PostID id);
 
     void edit(PostID id, String title, String summaryImageUrl);
+
+    void delete(PostID id);
 }

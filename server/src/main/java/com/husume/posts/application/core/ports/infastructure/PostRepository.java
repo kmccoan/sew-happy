@@ -10,4 +10,6 @@ public interface PostRepository {
 
     void create(PostPO newPost);
     void save(PostPO existingPost);
+
+    void delete(PostID id);
 }

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ClearPosts, CreatePost, EditPost, FetchDetailedPost, FetchPosts } from '../domain/actions';
+import { ClearPosts, CreatePost, DeletePost, EditPost, FetchDetailedPost, FetchPosts } from "../domain/actions";
 import { Post } from '../domain/models';
 import { PostState, STORE_NAME } from '../reducers/post.reducer';
 
@@ -38,7 +38,11 @@ export class PostsService {
     this.store.dispatch(new CreatePost(newPost));
   }
 
-  public editPost(postUpdates: Partial<Readonly<Post>>) {
-    this.store.dispatch(new EditPost(postUpdates));
+  public editPost(id: string, postUpdates: Partial<Readonly<Post>>) {
+    this.store.dispatch(new EditPost(id, postUpdates));
+  }
+
+  deletePost(id: string) {
+    this.store.dispatch(new DeletePost(id));
   }
 }

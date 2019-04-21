@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { MonoTypeOperatorFunction, Observable, ReplaySubject } from "rxjs";
-import { multicast, refCount, switchMap } from 'rxjs/operators';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { MonoTypeOperatorFunction, Observable, ReplaySubject } from 'rxjs';
+import { first, multicast, refCount, switchMap } from "rxjs/operators";
 import { Post } from '../../domain/models';
 import { PostsService } from '../../services/posts.service';
 
@@ -16,17 +16,25 @@ export class EditPostPageComponent implements OnInit {
   public postFormControl = new FormControl();
   public post$: Observable<Post>;
 
-  constructor(private route: ActivatedRoute, private postsService: PostsService) {
+  constructor(private route: ActivatedRoute, private postsService: PostsService, private router: Router) {
   }
 
   public editPost() {
-    this.post$.subscribe(post => {
-      this.postsService.editPost({
-        id: post.id,
-        title: this.postFormControl.value.title,
-        author: this.postFormControl.value.author,
-        summary_image_url: this.postFormControl.value.image
-      });
+    this.post$.pipe(first()).subscribe(post => {
+      this.postsService.editPost(post.id,
+        {
+          title: this.postFormControl.value.title,
+          author: this.postFormControl.value.author,
+          summary_image_url: this.postFormControl.value.image
+        });
+    });
+  }
+
+  public deletePost() {
+    this.post$.pipe(first()).subscribe(post => {
+      this.postsService.deletePost(post.id);
+
+      this.router.navigate(['/posts']);
     });
   }
 

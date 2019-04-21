@@ -60,6 +60,17 @@ public class PostgresPostRepository implements PostRepository {
         });
     }
 
+    @Override
+    public void delete(PostID id) {
+        if (id == null) {
+            throw new RuntimeException("Cannot delete a post that does not exist.");
+        }
+
+        postgresDataStore.transaction(connection -> {
+            connection.delete("delete from posts where id=?", id.asUUID());
+        });
+    }
+
     private PostPO convertToPost(ResultSet row) throws SQLException {
         return new PostPO(
             PostID.valueOf(row.getString("id")),

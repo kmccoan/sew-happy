@@ -20,6 +20,9 @@ public class PostsConductorFactory {
     @Autowired
     private PostsEditConductor postsEditConductor;
 
+    @Autowired
+    private PostsDeleteConductor postsDeleteConductor;
+
     public Handler<RoutingContext> createGetAllHandler() {
         return postsGetAllConductor;
     }
@@ -34,5 +37,9 @@ public class PostsConductorFactory {
 
     public Handler<RoutingContext> createPostHandler() {
         return postsCreateConductor;
+    }
+
+    public Handler<RoutingContext> createDeleteHandler() {
+        return postsDeleteConductor;
     }
 }

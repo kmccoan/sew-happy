@@ -5,7 +5,7 @@ import { combineLatest, of } from 'rxjs';
 
 import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
 
-import { CreatePost, EditPost, FetchDetailedPost, FetchPosts, PostContentFetched, PostCreated, PostFetched, PostsFetched, PostUpdated } from "../domain/actions";
+import { CreatePost, DeletePost, EditPost, FetchDetailedPost, FetchPosts, PostContentFetched, PostCreated, PostDeleted, PostFetched, PostsFetched, PostUpdated } from '../domain/actions';
 import { PostsHttpService } from '../services/posts.http.service';
 
 
@@ -42,7 +42,13 @@ export class PostEffects {
   @Effect()
   public readonly editPost$ = this.actions$.pipe(
     ofType(EditPost.TYPE),
-    switchMap((action: EditPost) => this.postsHttpService.updatePost(action.postUpdates).pipe(map(() => new PostUpdated())))
+    switchMap((action: EditPost) => this.postsHttpService.updatePost(action.id, action.postUpdates).pipe(map(() => new PostUpdated())))
+  );
+
+  @Effect()
+  public readonly deletePost$ = this.actions$.pipe(
+    ofType(DeletePost.TYPE),
+    switchMap((action: DeletePost) => this.postsHttpService.deletePost(action.id).pipe(map(() => new PostDeleted())))
   );
 
   @Effect({dispatch: false})
@@ -55,5 +61,11 @@ export class PostEffects {
   public readonly postUpdatedSnack$ = this.actions$.pipe(
     ofType(PostUpdated.TYPE),
     tap(() => this.snackBar.open('Your post was updated.'))
+  );
+
+  @Effect({dispatch: false})
+  public readonly postDeletedSnack$ = this.actions$.pipe(
+    ofType(PostDeleted.TYPE),
+    tap(() => this.snackBar.open('Your post was deleted.'))
   );
 }

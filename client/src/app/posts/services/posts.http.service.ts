@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { post } from "selenium-webdriver/http";
 
 import { environment } from '../../../environments/environment';
 import { Post, PostContent } from '../domain/models';
@@ -26,7 +25,11 @@ export class PostsHttpService {
     return this.http.post<Readonly<PostContent>>(environment.baseUrl + '/posts', newPost);
   }
 
-  public updatePost(postUpdates: Partial<Readonly<Post>>) {
-    return this.http.put<Readonly<PostContent>>(environment.baseUrl + '/posts', postUpdates);
+  public updatePost(id: string, postUpdates: Partial<Readonly<Post>>) {
+    return this.http.put<Readonly<PostContent>>(environment.baseUrl + '/posts/' + id, postUpdates);
+  }
+
+  public deletePost(id: string) {
+   return this.http.delete<Readonly<PostContent>>(environment.baseUrl + '/posts/' + id);
   }
 }

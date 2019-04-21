@@ -55,4 +55,9 @@ public class PostServiceImpl implements PostService {
         post.updateSummaryImageUrl(summaryImageUrl);
         postRepository.save(post);
     }
+
+    @Override
+    public void delete(PostID id) {
+        postRepository.delete(id);
+    }
 }
