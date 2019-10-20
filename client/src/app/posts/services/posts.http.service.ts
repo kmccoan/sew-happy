@@ -32,4 +32,8 @@ export class PostsHttpService {
   public deletePost(id: string) {
    return this.http.delete<Readonly<PostContent>>(environment.baseUrl + '/posts/' + id);
   }
+
+  public setContent(id: string, content: Readonly<PostContent>) {
+    return this.http.put<Readonly<PostContent>>(environment.baseUrl + '/posts/' + id + '/content', content);
+  }
 }

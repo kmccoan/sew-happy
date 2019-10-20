@@ -1,7 +1,5 @@
 package com.husume.posts.application.core.ports.infastructure;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.husume.posts.application.core.domain.models.PostID;
 
 public class PostPO {
@@ -40,19 +38,5 @@ public class PostPO {
 
     public String getSummaryImageUrl() {
         return summaryImageUrl;
-    }
-
-    public void updateTitle(String title) {
-        if (StringUtils.isBlank(title)) {
-            throw new RuntimeException("Cannot update post title to blank.");
-        }
-        this.title = title;
-    }
-
-    public void updateSummaryImageUrl(String summaryImageUrl) {
-        if (StringUtils.isBlank(summaryImageUrl)) {
-            throw new RuntimeException("Cannot update post summary image to blank.");
-        }
-        this.summaryImageUrl = summaryImageUrl;
     }
 }

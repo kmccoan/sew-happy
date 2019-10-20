@@ -1,0 +1,17 @@
+app-post-management, app-post-content-management {
+  display: block;
+  margin-top: 20px;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    flex: 0 0 auto;
+  }
+  .update-button {
+    margin-right: 10px;
+  }
+
+}

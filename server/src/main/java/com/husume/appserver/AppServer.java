@@ -50,6 +50,10 @@ public class AppServer extends AbstractVerticle {
 
         postRouter.get("/:id/content")
             .handler(contentConductorFactory.createGetHandler());
+        postRouter.put("/:id/content")
+            .handler(BodyHandler.create())
+            .handler(contentConductorFactory.createPutHandler());
+
         postRouter.get("/:id")
             .handler(postsConductorFactory.createGetHandler());
         postRouter.get()

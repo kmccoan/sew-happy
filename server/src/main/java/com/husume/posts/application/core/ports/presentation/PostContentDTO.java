@@ -6,6 +6,9 @@ public class PostContentDTO {
     private String postId;
     private List<PostPartDTO> parts;
 
+    protected PostContentDTO() {
+    }
+
     public PostContentDTO(String postId, List<PostPartDTO> parts) {
         this.postId = postId;
         this.parts = parts;

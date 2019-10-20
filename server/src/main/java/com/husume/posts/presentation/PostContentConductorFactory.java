@@ -11,7 +11,14 @@ public class PostContentConductorFactory {
     @Autowired
     private PostContentGetConductor conductor;
 
+    @Autowired
+    private PostContentEditConductor editConductor;
+
     public Handler<RoutingContext> createGetHandler() {
         return conductor;
+    }
+
+    public Handler<RoutingContext> createPutHandler() {
+        return editConductor;
     }
 }

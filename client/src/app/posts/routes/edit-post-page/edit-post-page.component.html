@@ -1,3 +1,15 @@
-<app-post-management [formControl]="postFormControl"></app-post-management>
-<button mat-raised-button color="primary" (click)="editPost()">Update</button>
-<button mat-raised-button color="secondary" (click)="deletePost()">Delete</button>
+<mat-tab-group>
+  <mat-tab label="Metadata">
+    <app-post-management [formControl]="postFormControl"></app-post-management>
+    <div class="action-bar">
+      <button mat-raised-button color="primary" (click)="editPost()" class="update-button">Save</button>
+      <button mat-raised-button color="warn" (click)="deletePost()">Delete</button>
+    </div>
+  </mat-tab>
+  <mat-tab label="Content">
+    <app-post-content-management [formControl]="postContentFormControl"></app-post-content-management>
+    <div class="action-bar">
+      <button mat-raised-button color="primary" (click)="editContent()" class="update-button">Save</button>
+    </div>
+  </mat-tab>
+</mat-tab-group>

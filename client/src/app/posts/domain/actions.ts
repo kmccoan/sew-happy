@@ -23,6 +23,14 @@ export class EditPost implements Action {
   }
 }
 
+export class SetContent implements Action {
+  public static readonly TYPE = '[POSTS] SET CONTENT';
+  public readonly type = SetContent.TYPE;
+
+  public constructor(public id: string, public content: Readonly<PostContent>) {
+  }
+}
+
 export class DeletePost implements Action {
   public static readonly TYPE = '[POSTS] DELETE POST';
   public readonly type = DeletePost.TYPE;
@@ -76,6 +84,11 @@ export class PostCreated implements Action {
 export class PostUpdated implements Action {
   public static readonly TYPE = '[POSTS] POST UPDATED';
   public readonly type = PostUpdated.TYPE;
+}
+
+export class ContentSet implements Action {
+  public static readonly TYPE = '[POSTS] POST CONTENT SET';
+  public readonly type = ContentSet.TYPE;
 }
 
 export class PostDeleted implements Action {

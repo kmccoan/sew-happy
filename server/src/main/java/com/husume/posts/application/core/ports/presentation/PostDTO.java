@@ -7,7 +7,7 @@ public class PostDTO {
     private Boolean archived;
     private String summaryImageUrl;
 
-    public PostDTO(){}
+    protected PostDTO(){}
 
     public PostDTO(String id, String title, String author, Boolean archived, String summaryImageUrl) {
         this.id = id;

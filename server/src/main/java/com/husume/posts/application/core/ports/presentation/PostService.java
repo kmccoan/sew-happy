@@ -13,5 +13,7 @@ public interface PostService {
 
     void edit(PostID id, String title, String summaryImageUrl);
 
+    void editContent(PostID id, List<String> contentParts);
+
     void delete(PostID id);
 }

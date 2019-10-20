@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MonoTypeOperatorFunction, Observable, ReplaySubject } from 'rxjs';
-import { first, multicast, refCount, switchMap } from "rxjs/operators";
+import { first, multicast, refCount, switchMap } from 'rxjs/operators';
 import { Post } from '../../domain/models';
 import { PostsService } from '../../services/posts.service';
 
@@ -14,6 +14,7 @@ import { PostsService } from '../../services/posts.service';
 })
 export class EditPostPageComponent implements OnInit {
   public postFormControl = new FormControl();
+  public postContentFormControl = new FormControl();
   public post$: Observable<Post>;
 
   constructor(private route: ActivatedRoute, private postsService: PostsService, private router: Router) {
@@ -27,6 +28,12 @@ export class EditPostPageComponent implements OnInit {
           author: this.postFormControl.value.author,
           summary_image_url: this.postFormControl.value.image
         });
+    });
+  }
+
+  public editContent() {
+    this.post$.pipe(first()).subscribe(post => {
+      this.postsService.setContent(post.id, this.postContentFormControl.value);
     });
   }
 
@@ -48,13 +55,15 @@ export class EditPostPageComponent implements OnInit {
       if (post) {
         this.postFormControl.reset(post);
         this.postFormControl.enable();
+
+        this.postContentFormControl.reset(post.content);
       } else {
         this.postFormControl.disable();
       }
     });
   }
 
-  cachePost<T>(): MonoTypeOperatorFunction<T> {
+  public cachePost<T>(): MonoTypeOperatorFunction<T> {
     return (source: Observable<T>) => refCount()(multicast(() => new ReplaySubject<T>(1))(source)) as Observable<T>;
   }
 }

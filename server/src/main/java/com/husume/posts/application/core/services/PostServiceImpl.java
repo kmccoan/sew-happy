@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.husume.posts.application.core.domain.models.Post;
+import com.husume.posts.application.core.domain.models.PostContent;
 import com.husume.posts.application.core.domain.models.PostID;
+import com.husume.posts.application.core.ports.infastructure.PostContentPO;
 import com.husume.posts.application.core.ports.infastructure.PostPO;
 import com.husume.posts.application.core.ports.presentation.PostContentDTO;
 import com.husume.posts.application.core.ports.presentation.PostDTO;
@@ -50,10 +52,17 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void edit(PostID id, String title, String summaryImageUrl) {
-        PostPO post = postRepository.get(id);
+        Post post = poConverter.convert(postRepository.get(id));
         post.updateTitle(title);
         post.updateSummaryImageUrl(summaryImageUrl);
-        postRepository.save(post);
+        postRepository.save(poConverter.convert(post));
+    }
+
+    @Override
+    public void editContent(PostID id, List<String> contentParts) {
+        PostContent postContent = poConverter.convert(contentRepository.get(id));
+        postContent.setContents(contentParts);
+        contentRepository.save(poConverter.convert(postContent));
     }
 
     @Override

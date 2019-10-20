@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ClearPosts, CreatePost, DeletePost, EditPost, FetchDetailedPost, FetchPosts } from "../domain/actions";
-import { Post } from '../domain/models';
+import { ClearPosts, CreatePost, DeletePost, EditPost, FetchDetailedPost, FetchPosts, SetContent } from '../domain/actions';
+import { Post, PostContent } from '../domain/models';
 import { PostState, STORE_NAME } from '../reducers/post.reducer';
 
 @Injectable()
@@ -40,6 +40,10 @@ export class PostsService {
 
   public editPost(id: string, postUpdates: Partial<Readonly<Post>>) {
     this.store.dispatch(new EditPost(id, postUpdates));
+  }
+
+  public setContent(id: string, content: Readonly<PostContent>) {
+    this.store.dispatch(new SetContent(id, content));
   }
 
   deletePost(id: string) {

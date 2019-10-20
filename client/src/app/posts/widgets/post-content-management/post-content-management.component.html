@@ -1,0 +1,26 @@
+<div *ngFor="let part of content?.parts; let i = index" class="content-row">
+  <button
+    mat-mini-fab
+    color="warn"
+    (click)="removePart(i)">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <mat-form-field
+    appearance="outline"
+  >
+    <mat-label>Post Content</mat-label>
+    <textarea
+      #textArea
+      matInput
+      value="{{part.content}}"
+      (blur)="onInputBlur(textArea.value, i)"
+    ></textarea>
+  </mat-form-field>
+</div>
+<button
+  mat-mini-fab
+  color="accent"
+  (click)="addContent()"
+  class="add-button">
+  <mat-icon>add</mat-icon>
+</button>

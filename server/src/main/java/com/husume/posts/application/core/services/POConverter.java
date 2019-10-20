@@ -39,7 +39,20 @@ public class POConverter {
         if (po == null) {
             return null;
         }
-        return new PostContent(convertAllParts(po.getParts()));
+        return new PostContent(po.getPostId(), convertAllParts(po.getParts()));
+    }
+
+    public PostContentPO convert(PostContent content) {
+        if (content == null) {
+            return null;
+        }
+        return new PostContentPO(content.getPostId(), convertAllPostParts(content.getParts()));
+    }
+
+    public List<PostPartPO> convertAllPostParts(List<PostPart> parts) {
+        List<PostPartPO> partPOs = new ArrayList<>();
+        parts.forEach(po -> partPOs.add(new PostPartPO(po.getContent())));
+        return partPOs;
     }
 
     public List<PostPart> convertAllParts(List<PostPartPO> pos) {
