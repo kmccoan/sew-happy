@@ -10,7 +10,7 @@
     <name>Sew Happy Web Client</name>
 
     <properties>
-        <node.version>v8.11.2</node.version>
+        <node.version>v11.8.0</node.version>
         <yarn.version>v1.7.0</yarn.version>
     </properties>
 
