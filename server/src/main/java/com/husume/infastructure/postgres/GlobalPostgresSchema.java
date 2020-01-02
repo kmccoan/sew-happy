@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 class GlobalPostgresSchema {
+    /**
+     * Format is: postgres://username:password@host:port/database-name
+     */
     public static final String DATABASE_URL = "DATABASE_URL";
 
     public String getDatabaseName() {
