@@ -1,17 +1,20 @@
+@import "../../../commons/theme/design_tokens";
+
 app-post-management, app-post-content-management {
   display: block;
-  margin-top: 20px;
+  margin-top: $spacing-s;
 }
 
 .action-bar {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: $spacing-s;
 
-  button {
+  .delete-post {
+    flex: 1 1 auto;
+  }
+
+  .update-post {
     flex: 0 0 auto;
   }
-  .update-button {
-    margin-right: 10px;
-  }
-
 }
