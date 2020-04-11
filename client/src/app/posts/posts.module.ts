@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatSnackBarModule, MatTabsModule } from "@angular/material";
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatSnackBarModule, MatTabsModule } from "@angular/material";
 import { MatInputModule } from '@angular/material/input';
 import { PostRoutingModule } from './post-routing.module';
 import { CreatePostPageComponent } from './routes/create-posts-page/create-post-page.component';
@@ -21,6 +21,7 @@ import { PostSummaryComponent } from './widgets/post-summary/post-summary.compon
     CommonModule,
     PostRoutingModule,
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,

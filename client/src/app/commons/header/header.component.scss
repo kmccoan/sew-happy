@@ -1,10 +1,12 @@
+@import "../theme/theme";
+
 .app-title {
-  background-color: #a3dfd4;
+  background-color: $accent;
 }
 
 h1 {
   text-align: center;
-  color: #2f2f2f;
+  color: $primary-darkest;
 }
 
 /*---------------*/

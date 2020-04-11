@@ -1,0 +1,115 @@
+@import '../../../../node_modules/@angular/material/theming';
+
+@include mat-core();
+
+$sew-happy-charcoal: (
+  50: #fdfdfd,
+  100: #f8f8f8,
+  200: #f3f3f3,
+  300: #eeeeee,
+  400: #cecece,
+  500: #b1b1b1,
+  600: #868686,
+  700: #717171,
+  800: #515151,
+  900: #2f2f2f,
+  A100: #f3f3f3,
+  A200: #eeeeee,
+  A400: #cecece,
+  A700: #717171,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$sew-happy-mint: (
+  50: #e8f7f1,
+  100: #c7ebdb,
+  200: #a3dfc5,
+  300: #79d4ae,
+  400: #52ca9b,
+  500: #1cc188,
+  600: #15b17c,
+  700: #0c9e6e,
+  800: #068c61,
+  900: #006c49,
+  A100: #c7ebdb,
+  A200: #a3dfc5,
+  A400: #52ca9b,
+  A700: #0c9e6e,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$sew-happy-raspberry: (
+  50: #fbe3eb,
+  100: #f6b9ce,
+  200: #f18cae,
+  300: #ec5d8e,
+  400: #e73975,
+  500: #e30b5e,
+  600: #d2085b,
+  700: #bd0756,
+  800: #a80352,
+  900: #83004a,
+  A100: #f6b9ce,
+  A200: #f18cae,
+  A400: #e73975,
+  A700: #bd0756,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$primary-palette: mat-palette($sew-happy-charcoal, 800);
+$accent-palette:  mat-palette($sew-happy-mint, 200);
+$warn-palette:    mat-palette($sew-happy-raspberry, 600);
+
+$primary: mat-color($primary-palette);
+$primary-darkest: mat-color($primary-palette, 900);
+$accent: mat-color($accent-palette);
+$warn: mat-color($warn-palette);
+
+$sew-happy-theme: mat-light-theme($primary-palette, $accent-palette, $warn-palette);
+
+@include angular-material-theme($sew-happy-theme);
