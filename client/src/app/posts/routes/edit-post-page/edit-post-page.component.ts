@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatSnackBar } from "@angular/material";
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MonoTypeOperatorFunction, Observable, ReplaySubject } from 'rxjs';
-import { first, multicast, refCount, switchMap } from 'rxjs/operators';
+import { first, multicast, refCount, switchMap, take, tap } from "rxjs/operators";
 import { Post } from '../../domain/models';
 import { PostsService } from '../../services/posts.service';
 
@@ -17,29 +18,44 @@ export class EditPostPageComponent implements OnInit {
   public postContentFormControl = new FormControl();
   public post$: Observable<Post>;
 
-  constructor(private route: ActivatedRoute, private postsService: PostsService, private router: Router) {
+  constructor(private route: ActivatedRoute, private postsService: PostsService, private router: Router, private snackBar: MatSnackBar) {
   }
 
   public editPost() {
-    this.post$.pipe(first()).subscribe(post => {
+    this.post$.pipe(take(1)).subscribe(post => {
       this.postsService.editPost(post.id,
         {
           title: this.postFormControl.value.title,
           author: this.postFormControl.value.author,
           summary_image_url: this.postFormControl.value.image
-        });
+        })
+        .pipe(
+          take(1),
+          tap(() => this.snackBar.open('Your post was updated.'))
+        )
+        .subscribe();
     });
   }
 
   public editContent() {
     this.post$.pipe(first()).subscribe(post => {
-      this.postsService.setContent(post.id, this.postContentFormControl.value);
+      this.postsService.setContent(post.id, this.postContentFormControl.value)
+        .pipe(
+          take(1),
+          tap(() => this.snackBar.open('Your post was updated.'))
+        )
+        .subscribe();
     });
   }
 
   public deletePost() {
     this.post$.pipe(first()).subscribe(post => {
-      this.postsService.deletePost(post.id);
+      this.postsService.deletePost(post.id)
+        .pipe(
+          take(1),
+          tap(() => this.snackBar.open('Your post was deleted.'))
+        )
+        .subscribe();
 
       this.router.navigate(['/posts']);
     });

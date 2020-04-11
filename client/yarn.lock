@@ -800,30 +800,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@ngrx/effects@^8.4.0":
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-8.4.0.tgz#1904795c344e24682983cd3e65a636c43f8aba60"
-
-"@ngrx/entity@^8.4.0":
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-8.4.0.tgz#4d14aaabe722d840da7e4f03b03eaa6c483fbadc"
-
-"@ngrx/router-store@^8.4.0":
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-8.4.0.tgz#59e5295eadaabfdabe11e201de3c0405434783bc"
-
-"@ngrx/schematics@^8.4.0":
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-8.4.0.tgz#34290255ff2db9261e643f672fa0f3ac6185e499"
-
-"@ngrx/store-devtools@^8.4.0":
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-8.4.0.tgz#6f79680331072d450498912988df7a44c12b6ddb"
-
-"@ngrx/store@^8.4.0":
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-8.4.0.tgz#b4ab3bf81c6ab7bc0904886aa2b40be98fae8db5"
-
 "@ngtools/webpack@8.3.12":
   version "8.3.12"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-8.3.12.tgz#4b4a80175dadc2e03048c60dab46ed6bbeb89eff"

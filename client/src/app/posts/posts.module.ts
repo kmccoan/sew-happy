@@ -3,13 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatFormFieldModule, MatIconModule, MatSnackBarModule, MatTabsModule } from "@angular/material";
 import { MatInputModule } from '@angular/material/input';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../../environments/environment';
-import { PostEffects } from './effects/post.effects';
 import { PostRoutingModule } from './post-routing.module';
-import { postReducer, STORE_NAME } from './reducers/post.reducer';
 import { CreatePostPageComponent } from './routes/create-posts-page/create-post-page.component';
 import { EditPostPageComponent } from './routes/edit-post-page/edit-post-page.component';
 import { PostPageComponent } from './routes/post-page/post-page.component';
@@ -25,9 +19,6 @@ import { PostSummaryComponent } from './widgets/post-summary/post-summary.compon
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature(STORE_NAME, postReducer),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forFeature([ PostEffects ]),
     PostRoutingModule,
     MatButtonModule,
     MatIconModule,
